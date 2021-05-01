@@ -1,0 +1,192 @@
+---
+title: 'CIND 123 - Data Analytics: Basic Methods'
+author: 
+output:
+  word_document: default
+  html_document: default
+  pdf_document: default
+---
+<center> <h1> Assignment 1 (10%) </h1> </center>
+<center>  <h3> [TOOBA KHAN] </h2> </center>
+<center> <h3> [CIND123 DK0 & 500619489] </h2> </center>
+---
+## Instructions 
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. Review this website for more details on using R Markdown <http://rmarkdown.rstudio.com>.
+
+Use RStudio for this assignment. Complete the assignment by inserting your R code wherever you see the string "#INSERT YOUR ANSWER HERE".
+
+When you click the **Knit** button, a document (PDF, Word, or HTML format) will be generated that includes both the assignment content as well as the output of any embedded R code chunks.
+
+Submit **both**  the rmd and generated output files. Failing to submit both files will be subject to mark deduction.
+
+## Sample Question and Solution
+
+Use `seq()` to create the vector $(1,2,3,\ldots,10)$.
+
+```{r}
+seq(1,10)
+```
+
+## Question 1
+
+a) Create and print a vector `x` with all integers 1-100, and a vector `y` with every fifth integer in the same range. Hint: use `seq()`function. What is the difference in lengths of the vectors `x` and `y`?.
+
+```{r}
+x<-seq(1:100)
+x
+y<-seq(1,100, by=5)
+y
+# The difference in the length of x and y is 100 and 20.
+# x is having all the integers from 1 to 100, so length of x is 100, Whereas length of y is 20, as it has every fifth integer.
+```
+
+b) Create a new vector, "x_square", with the square of elements at indices 3, 6, 7, 10, 15, 22, 23, 24, and 30 from the variable "x". Hint: Use indexing rather than a for loop. Calculate the mean and median of the last five values from x_square.
+
+```{r}
+x<-c(3,6,7,10,15,22,23,24,30)
+x
+x_square<-x^2
+x_square
+mean(x_square[5:9])
+median(x_square[5:9])
+```
+
+c) To convert factor to number, would it be correct to use the following commands? Explain your answer.
+
+`factorVar <- factor(c(1, 6, 5.4, 3.2));as.numeric(factorVar)`
+
+```{r}
+factorVar <- factor(c(1, 6, 5.4, 3.2));as.numeric(factorVar)
+# Yes it is a right command as answer convert factors from increasing to decreasing.1 belongs to least number 1 and 4 belong to highest number 6 in data set and so on.
+```
+
+d) A comma-separated values file `dataset.csv` consists of missing values represented by question marks (`?`) and exclamation mark (`!`). How can you read this type of files in R?
+
+```{r}
+# We can use this as an argument in read.csv to replace '?' and '!'with 'NA' using this argument in read.csv.
+   na.strings=c("","?","!","NA")
+```
+
+\newpage
+## Question 2
+
+a) Compute: $$\sum_{n=1}^{100}\frac{2^{n}}{(n-1)!}$$
+
+```{r}
+
+n <- 1:100
+sum(2^n/(factorial(n-1)))
+
+
+```
+
+b) Compute: $$\sum_{n=1}^{10}\left(\frac{2^{n}}{n^2} + \frac{n^{4}}{4^{n}}\right)$$
+
+```{r}
+
+n <- 1:10
+sum( ((2^n) / (n^2)) + ((n^4) / (4^n)) )
+```
+
+c) Compute: $$\sum_{n=0}^{10} \frac{1}{(n+1)!}$$  
+
+```{r}
+
+sum(1/factorial((0:10)+1))
+```
+
+d) Compute: $$\prod_{n=3}^{33} \left(3n + \frac{3}{\sqrt[3]{n}}\right)$$
+
+```{r}
+prod( (3*(3:33)) + (3/((3:33)^(1/3))) )
+```
+
+e) Explain the output of this R-command:
+`c(0:5)[NA]`
+
+```{r}
+# It is a vector of NA length 6. Starting from 0 to 5. 
+```
+
+f) What is the difference between is.vector() and is.numeric() functions?
+
+```{r}
+# is.vector() tests,if R object is a vector or not. If R object is a vector then it returns value TRUE and vice versa . While is.numeric() tests if R object is a numeric vector or not.
+# For Example, if z is a vector of characters z<-c("a","b","c") then tO check whether z is a vector,use is.vector(z). It will return value TRUE. but if you want to  check the same vector with is.numeric(), it will return value as FALSE. It is  because class of Vector is character not numeric.
+
+```
+
+g) List at least three advantages and three disadvantages of using `RShiny` package?
+```{r}
+# Advantages:
+# 1.It is a very powerful app and can give visualization of even most complex data.
+# 2. It doesn't require any prior knowledge of HTML, CSS or Javascript to build this app complete functionally.
+# 3. Response Time of this app is real.It means that Output deliver in a very short span of time and thus make it real time.
+# Disadvantages:
+# 1. It requires timely updates in order to avoid the dysfunctionality of this app.
+# 2. It is open and has free access to anyone. You can not block anyone's access.
+# 3. Free version has some restrictions.YOu are provided with only 25 active hours per month per account.
+
+```
+
+\newpage
+## Question 3
+`iris` dataset gives the measurements in centimeters of the variables sepal length, sepal width, petal length and petal width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica.
+
+Install the `iris` dataset on your computer using the command `install.packages("datasets")`. Then, load the `datasets` package into your session using the following command.
+```{r}
+library(datasets)
+```
+
+a) Display the first six rows of the `iris` data set.
+
+```{r}
+head(iris)
+```
+
+b) Compute the average of the first four variables (Sepal.Length, Sepal.Width, Petal.Length and Petal.Width) using `sapply()` function.
+
+Hint: You might need to consider removing the `NA` values, otherwise the average will not be computed.
+
+```{r}
+sapply(iris[, 1:4], FUN = mean, na.rm = T)
+```
+
+c) Show how to use R to replace the missing values in this dataset with plausible ones.
+
+```{r}
+iris[is.na(iris)]<-0
+```
+
+d) Compute the standard deviation for only the first and the third variables (Sepal.Length and Petal.Length)
+
+```{r}
+sd(iris$Petal.Length)
+sd(iris$Sepal.Length)
+```
+
+e) Construct a boxplot for `Sepal.Width` variable, then display the values of all the outliers. Explain how these outliers have been calculated.
+
+```{r}
+boxplot(iris$Sepal.Width)
+outvals <- boxplot(iris$Sepal.Width)$out
+outvals
+
+```
+
+f) Compute the upper quartile of the `Sepal.Width` variable with two different methods.
+
+```{r}
+summary(iris$Sepal.Width)
+quantile(iris$Sepal.Width, 0.75)
+
+```
+
+g) Construct a pie chart to describe the species with 'Sepal.Length' less than 7 centimeters.
+```{r}
+indices <- iris[ ,1] < 7.0
+pie(iris$Sepal.Length[indices])
+```
+
+END of Assignment #1.
